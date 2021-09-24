@@ -17,7 +17,18 @@ module AnyCable
 
     def use(middleware)
       check_frozen!
+      puts "\n\n\n------------------------------"
+      puts middleware
+      puts middleware.class
+      begin
+        raise Exception
+      rescue Exception => exception
+        puts exception.backtrace
+      end
+      puts "\n\n\n=============================="
       middleware = build_middleware(middleware)
+      puts middleware.class
+      puts "\n\n\n*******************************"
       sync { registry << middleware }
     end
 
